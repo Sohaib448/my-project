@@ -5,11 +5,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-&p$c2h^iu9+(r0&8zs9=sx3m*$ocxrygbf5v*%nxrxg$^vt^u#'
 
-DEBUG = False  # IMPORTANT for Railway
-
-ALLOWED_HOSTS = [
-    "*"
-]
+DEBUG = False
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
