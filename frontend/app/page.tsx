@@ -30,7 +30,7 @@ export default function Home() {
     formData.append("image", file);
 
     try {
-      const res = await fetch("https://my-project-production-40cc.up.railway.app", {
+      const res = await fetch("https://YOUR-RAILWAY-BACKEND-URL/predict/", {
         method: "POST",
         body: formData,
       });
