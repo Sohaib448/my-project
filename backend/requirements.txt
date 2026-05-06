@@ -1,0 +1,8 @@
+Django
+gunicorn
+djangorestframework
+django-cors-headers
+Pillow
+numpy
+torch
+torchvision
