@@ -1,35 +1,69 @@
+# ========================
 # Dependencies
+# ========================
 node_modules/
+frontend/node_modules/
+jspm_packages/
+.pnp
+.pnp.js
 
+# ========================
 # Build outputs
+# ========================
 .next/
+frontend/.next/
 out/
 dist/
 build/
+coverage/
 
-# Environment
+# ========================
+# Environment variables
+# ========================
 .env
 .env.*
+!.env.example
 
+# ========================
 # Logs
+# ========================
 *.log
 
+# ========================
 # OS / Editor
+# ========================
 .DS_Store
 .vscode/
+.idea/
 
-# Python
+# ========================
+# Python / Django
+# ========================
 venv/
 backend/venv/
 __pycache__/
 *.pyc
-
-# ML Models
-*.pth
-*.pt
-
-# Database
 db.sqlite3
 
-# Vercel
-.vercel/ 
+# ========================
+# ML / AI models (IMPORTANT)
+# ========================
+*.pth
+*.pt
+*.h5
+*.onnx
+*.ckpt
+
+# IMPORTANT: if your model is in backend/model/model.pth
+backend/model/model.pth
+
+# ========================
+# Django static/media
+# ========================
+media/
+staticfiles/
+
+# ========================
+# Next.js / Vercel
+# ========================
+.vercel/
