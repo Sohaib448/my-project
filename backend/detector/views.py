@@ -1,9 +1,13 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, parser_classes
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from PIL import Image
 import torch
 import torchvision.transforms as transforms
 from .model_loader import get_model
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Load model ONCE
 model = get_model()
@@ -25,9 +29,21 @@ def preprocess(image):
 
 
 # -------------------------
-# API ENDPOINT
+# HEALTH CHECK ENDPOINT (For Railway)
+# -------------------------
+@api_view(['GET'])
+def health_check(request):
+    return Response({
+        'status': 'healthy',
+        'model_loaded': model is not None
+    })
+
+
+# -------------------------
+# PREDICTION API ENDPOINT
 # -------------------------
 @api_view(['POST'])
+@parser_classes([MultiPartParser, FormParser])
 def predict_image(request):
 
     file = request.FILES.get('image')
@@ -64,6 +80,7 @@ def predict_image(request):
         })
 
     except Exception as e:
+        logger.error(f"Prediction error: {str(e)}")
         return Response({
             "success": False,
             "message": str(e)
